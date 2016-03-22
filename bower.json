@@ -12,7 +12,9 @@
     "Hakim El Hattab <hakim.elhattab@gmail.com>"
   ],
   "dependencies": {
-    "headjs": "~1.0.3"
+    "headjs": "~1.0.3",
+    "jqcloud2": "~2.0.1",
+    "jquery": "~2.2.2"
   },
   "repository": {
     "type": "git",
