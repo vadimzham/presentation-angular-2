@@ -118,7 +118,7 @@
 &lt;div ng-if=&quot;true&quot;&gt;
     &lt;button ng-click=”phone.value = 911&quot;&gt;
 		change phone
-	&lt;/button&gt;
+    &lt;/button&gt;
 &lt;/div&gt;
     			</pre>
             </section>
@@ -174,8 +174,8 @@ angular.module('App', [])
 import { Component } from 'angular2/core';
 
 @Component({
-  selector: 'hello-world',
-  template: 'Hello {{name}}!'
+    selector: 'hello-world',
+    template: 'Hello {{name}}!'
 })
 export class AppComponent {
     constructor() {
@@ -202,12 +202,12 @@ export class AppComponent {
 				  <pre class="highlight js medium fragment">
 @Component({selector: 'todo-cmp'})
 class TodoCmp {
-  @Input() model;
-  @Output() complete = new EventEmitter();
+    @Input() model;
+    @Output() complete = new EventEmitter();
 
-  onCompletedButton() {
-    this.complete.next(); // this fires an event
-  }
+    onCompletedButton() {
+        this.complete.next(); // this fires an event
+    }
 }			  </pre>
             </section>
         </section>
@@ -240,14 +240,12 @@ class TodoCmp {
             <section>
                 <img class="stretch" src="img/ang2-change-detect.png">
 				<span class="slidenote">Many thanks to <a
-                        href="http://victorsavkin.com/post/110170125256/change-detection-in-angular-2">Victor
-                    Savkin </a>for this picture</span>
+                        href="http://victorsavkin.com/post/110170125256/change-detection-in-angular-2">Victor Savkin</a>for this picture</span>
             </section>
             <section>
                 <img class="stretch" src="img/ang2-change-detect-immutable.png">
 				<span class="slidenote">Many thanks to <a
-                        href="http://victorsavkin.com/post/110170125256/change-detection-in-angular-2">Victor
-                    Savkin </a>for this picture</span>
+                        href="http://victorsavkin.com/post/110170125256/change-detection-in-angular-2">Victor Savkin</a>for this picture</span>
             </section>
         </section>
 
@@ -263,16 +261,16 @@ class TodoCmp {
 import { Component } from 'angular2/core';
 
 @Component({
-  selector: 'my-app',
-  template: 'Hello {{name}}!
-	&lt;button (click)=&quot;clicked()&quot;&gt;
-		Change Name
-	&lt;/button&gt;'
+    selector: 'my-app',
+    template: 'Hello {{name}}!
+        &lt;button (click)=&quot;clicked()&quot;&gt;
+		    Change Name
+        &lt;/button&gt;'
 })
 export class AppComponent {
-  clicked(event) {
-   this.name = 'UserName';
-  }
+    clicked(event) {
+        this.name = 'UserName';
+    }
 }
 				</pre>
             </section>
@@ -288,12 +286,12 @@ export class AppComponent {
             <section>
 				  <pre class="highlight js">
 var myZone = zone.fork({
-  beforeTask: function () {},
-  afterTask: function () {},
-  // many other handlers
+    beforeTask: function () {},
+    afterTask: function () {},
+    // many other handlers
 });
 myZone.run(function () {
-  // woo!
+    // woo!
 });
 				</pre>
             </section>
@@ -302,9 +300,9 @@ myZone.run(function () {
 zone.fork().run(function () {
 //pseudo code, actually it`s more complicated
 //...
- clicked(event) {
-   this.name = 'UserName';
-  }
+    clicked(event) {
+        this.name = 'UserName';
+    }
 //angular change detection
 });
 				</pre>
@@ -318,21 +316,21 @@ zone.fork().run(function () {
             <section>
 			    <pre class="highlight js">
 class NameService {
-  constructor() {
-    this.name = 'UserName';
-  }
+    constructor() {
+        this.name = 'UserName';
+    }
 
-  getName() {
-    return this.name;
-  }
+    getName() {
+        return this.name;
+    }
 }				</pre>
             </section>
             <section>
 					<pre class="highlight js medium">
 class App {
-  constructor(@Inject(NameService) NameService) {
-    this.name = NameService.getName();
-  }
+    constructor(@Inject(NameService) NameService) {
+        this.name = NameService.getName();
+    }
 }
 			  </pre>
             </section>
@@ -518,9 +516,9 @@ Polymer({
 import React from 'react';
 
 class HelloWorld extends React.Component {
-  render() {
-    return &lt;p&gt;Hello, world!&lt;/p&gt;;
-  }
+    render() {
+        return &lt;p&gt;Hello, world!&lt;/p&gt;;
+    }
 }
 
 export default HelloWorld;
