@@ -1,5 +1,6 @@
 # Angular 2 (using Reveal.js) by Evgeny Gusev
- 
+ Live - http://bunopus.github.io/presentation-angular-2
+
  Useful links
  
 #### Whats wrong with Angular 1
