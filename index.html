@@ -92,11 +92,33 @@
             <section>
                 <img src="img/two-way-db.png">
             </section>
-            <section>
+            <section data-transition="fade-out">
                 <img src="img/vaider-fb.png">
             </section>
+            <section data-transition="fade-out">
+                <img src="img/vaider-fb-name.png">
+            </section>
+            <section>
+			    <pre class="highlight html">
+&lt;div class='name'&gt;{{author.name}}&lt;/div&gt;
+                </pre>
+            </section>
+            <section>
+			    <pre class="highlight js">
+$scope.$watch(
+    "author.name",
+    function (newValue, oldValue) {
+       <span class="fragment fade-out" data-fragment-index="1">// some work</span>
+       <span class="fragment" data-fragment-index="2">if(!newValue) {
+           author.status = "unknown";
+       }
+       </span>
+    }
+);
+<span class="fragment" data-fragment-index="0">//$scope.$$watchers.push(...</span>
+                </pre>
+            </section>
         </section>
-
 
         <section>
             <section>
