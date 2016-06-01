@@ -134,12 +134,15 @@ $scope.$watch(
 &lt;/div&gt;
     			</pre>
             </section>
-            <section>
-			    <pre class="highlight html medium">
-&lt;div ng-init=&quot;<span class="fragment highlight-current-green">phone = {value: 02}</span>&quot;&gt;{{phone.value}}&lt;/div&gt;
+            <section cass="stretch">
+			    <pre class="highlight html">
+&lt;div ng-init=&quot;<span class="fragment highlight-current-green">phone = {value: 02}</span>&quot;&gt;
+        {{phone.value}}
+&lt;/div&gt;
+
 &lt;div ng-if=&quot;true&quot;&gt;
     &lt;button ng-click=”phone.value = 911&quot;&gt;
-		change phone
+        change phone
     &lt;/button&gt;
 &lt;/div&gt;
     			</pre>
@@ -176,21 +179,21 @@ MyController.$inject = [‘$scope’, ‘$window’];
             <section>
                 <h3>Components</h3>
             </section>
-            <section>
+            <section class="stretch">
                 <h4>Before</h4>
-			    <pre class="highlight js medium">
+			    <pre class="highlight js">
 angular.module('App', [])
-    .directive('hello-world', function () {
-        return {
-            restrict: 'E',
-            template: '<span>Hello {{name}}</span>',
-            controller: function ($scope, $element) {
-                $scope.name = 'World';
-            }
+.directive('hello-world', function () {
+    return {
+        restrict: 'E',
+        template: '<span>Hello {{name}}</span>',
+        controller: function ($scope) {
+            $scope.name = 'World';
         }
-    })    			</pre>
+    }
+})    			</pre>
             </section>
-            <section>
+            <section class="stretch">
                 <h4>After</h4>
 			    <pre class="highlight js">
 import { Component } from 'angular2/core';
@@ -216,21 +219,24 @@ export class AppComponent {
 			    <pre class="highlight js">
 &lt;todo-cmp [model]=&quot;myTodo&quot;&gt;&lt;/todo-cmp&gt;
 				</pre>
-			  <pre class="highlight js medium fragment">
+			  <pre class="highlight js fragment">
 &lt;todo-cmp [model]=&quot;todo&quot;
-	  (complete)=&quot;onCompletingTodo(todo)&quot;&gt;
+    (complete)=&quot;onCompletingTodo(todo)&quot;&gt;
 &lt;/todo-cmp&gt;
 			  </pre>
-				  <pre class="highlight js medium fragment">
+            </section>
+            <section>
+                    <pre class="highlight js">
 @Component({selector: 'todo-cmp'})
 class TodoCmp {
     @Input() model;
     @Output() complete = new EventEmitter();
 
     onCompletedButton() {
-        this.complete.next(); // this fires an event
+        // this fires an event
+        this.complete.next();
     }
-}			  </pre>
+}			        </pre>
             </section>
         </section>
 
@@ -242,7 +248,7 @@ class TodoCmp {
                 <img class="stretch" src="img/han-smile.gif">
             </section>
             <section>
-			    <pre class="highlight js medium">
+			    <pre class="highlight js">
 &lt;input [ngModel]=&quot;todo.text&quot;
 	(ngModelChange)=&quot;todo.text=$event&quot;&gt;
 &lt;/input&gt;
@@ -262,12 +268,12 @@ class TodoCmp {
             <section>
                 <img class="stretch" src="img/ang2-change-detect.png">
 				<span class="slidenote">Many thanks to <a
-                        href="http://victorsavkin.com/post/110170125256/change-detection-in-angular-2">Victor Savkin</a>for this picture</span>
+                        href="http://victorsavkin.com/post/110170125256/change-detection-in-angular-2">Victor Savkin</a> for this picture</span>
             </section>
             <section>
                 <img class="stretch" src="img/ang2-change-detect-immutable.png">
 				<span class="slidenote">Many thanks to <a
-                        href="http://victorsavkin.com/post/110170125256/change-detection-in-angular-2">Victor Savkin</a>for this picture</span>
+                        href="http://victorsavkin.com/post/110170125256/change-detection-in-angular-2">Victor Savkin</a> for this picture</span>
             </section>
         </section>
 
@@ -348,7 +354,7 @@ class NameService {
 }				</pre>
             </section>
             <section>
-					<pre class="highlight js medium">
+                <pre class="highlight js" style="font-size: 0.9em !important;">
 class App {
     constructor(@Inject(NameService) NameService) {
         this.name = NameService.getName();
@@ -405,21 +411,17 @@ class App {
                 </table>
             </section>
             <section>
-					<pre class="highlight js medium">
+					<pre class="highlight js">
 &lt;dom-module id=&quot;hello-world&quot;&gt;
     &lt;template&gt;
         &lt;p&gt;Hello {{name}}&lt;/p&gt;
     &lt;/template&gt;
 &lt;/dom-module&gt;
-
 &lt;script&gt;
 Polymer({
     is: &#39;hello-world&#39;,
     properties: {
-        who: {
-            type: String,
-            value: &#39;World&#39;
-        }
+        who: &#39;World&#39
     }
 });
 &lt;/script&gt;
@@ -540,7 +542,7 @@ Polymer({
                 </table>
             </section>
             <section>
-					<pre class="highlight js medium">
+					<pre class="highlight js">
 import React from 'react';
 
 class HelloWorld extends React.Component {
