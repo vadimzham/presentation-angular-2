@@ -92,11 +92,33 @@
             <section>
                 <img src="img/two-way-db.png">
             </section>
-            <section>
+            <section data-transition="fade-out">
                 <img src="img/vaider-fb.png">
             </section>
+            <section data-transition="fade-out">
+                <img src="img/vaider-fb-name.png">
+            </section>
+            <section>
+			    <pre class="highlight html">
+&lt;div class='name'&gt;{{author.name}}&lt;/div&gt;
+                </pre>
+            </section>
+            <section>
+			    <pre class="highlight js">
+$scope.$watch(
+    "author.name",
+    function (newValue, oldValue) {
+       <span class="fragment fade-out" data-fragment-index="1">// some work</span>
+       <span class="fragment" data-fragment-index="2">if(!newValue) {
+           author.status = "unknown";
+       }
+       </span>
+    }
+);
+<span class="fragment" data-fragment-index="0">//$scope.$$watchers.push(...</span>
+                </pre>
+            </section>
         </section>
-
 
         <section>
             <section>
@@ -112,12 +134,15 @@
 &lt;/div&gt;
     			</pre>
             </section>
-            <section>
-			    <pre class="highlight html medium">
-&lt;div ng-init=&quot;<span class="fragment highlight-current-green">phone = {value: 02}</span>&quot;&gt;{{phone.value}}&lt;/div&gt;
+            <section cass="stretch">
+			    <pre class="highlight html">
+&lt;div ng-init=&quot;<span class="fragment highlight-current-green">phone = {value: 02}</span>&quot;&gt;
+        {{phone.value}}
+&lt;/div&gt;
+
 &lt;div ng-if=&quot;true&quot;&gt;
     &lt;button ng-click=”phone.value = 911&quot;&gt;
-		change phone
+        change phone
     &lt;/button&gt;
 &lt;/div&gt;
     			</pre>
@@ -154,21 +179,21 @@ MyController.$inject = [‘$scope’, ‘$window’];
             <section>
                 <h3>Components</h3>
             </section>
-            <section>
+            <section class="stretch">
                 <h4>Before</h4>
-			    <pre class="highlight js medium">
+			    <pre class="highlight js">
 angular.module('App', [])
-    .directive('hello-world', function () {
-        return {
-            restrict: 'E',
-            template: '<span>Hello {{name}}</span>',
-            controller: function ($scope, $element) {
-                $scope.name = 'World';
-            }
+.directive('hello-world', function () {
+    return {
+        restrict: 'E',
+        template: '<span>Hello {{name}}</span>',
+        controller: function ($scope) {
+            $scope.name = 'World';
         }
-    })    			</pre>
+    }
+})    			</pre>
             </section>
-            <section>
+            <section class="stretch">
                 <h4>After</h4>
 			    <pre class="highlight js">
 import { Component } from 'angular2/core';
@@ -194,21 +219,24 @@ export class AppComponent {
 			    <pre class="highlight js">
 &lt;todo-cmp [model]=&quot;myTodo&quot;&gt;&lt;/todo-cmp&gt;
 				</pre>
-			  <pre class="highlight js medium fragment">
+			  <pre class="highlight js fragment">
 &lt;todo-cmp [model]=&quot;todo&quot;
-	  (complete)=&quot;onCompletingTodo(todo)&quot;&gt;
+    (complete)=&quot;onCompletingTodo(todo)&quot;&gt;
 &lt;/todo-cmp&gt;
 			  </pre>
-				  <pre class="highlight js medium fragment">
+            </section>
+            <section>
+                    <pre class="highlight js">
 @Component({selector: 'todo-cmp'})
 class TodoCmp {
     @Input() model;
     @Output() complete = new EventEmitter();
 
     onCompletedButton() {
-        this.complete.next(); // this fires an event
+        // this fires an event
+        this.complete.next();
     }
-}			  </pre>
+}			        </pre>
             </section>
         </section>
 
@@ -220,7 +248,7 @@ class TodoCmp {
                 <img class="stretch" src="img/han-smile.gif">
             </section>
             <section>
-			    <pre class="highlight js medium">
+			    <pre class="highlight js">
 &lt;input [ngModel]=&quot;todo.text&quot;
 	(ngModelChange)=&quot;todo.text=$event&quot;&gt;
 &lt;/input&gt;
@@ -240,12 +268,12 @@ class TodoCmp {
             <section>
                 <img class="stretch" src="img/ang2-change-detect.png">
 				<span class="slidenote">Many thanks to <a
-                        href="http://victorsavkin.com/post/110170125256/change-detection-in-angular-2">Victor Savkin</a>for this picture</span>
+                        href="http://victorsavkin.com/post/110170125256/change-detection-in-angular-2">Victor Savkin</a> for this picture</span>
             </section>
             <section>
                 <img class="stretch" src="img/ang2-change-detect-immutable.png">
 				<span class="slidenote">Many thanks to <a
-                        href="http://victorsavkin.com/post/110170125256/change-detection-in-angular-2">Victor Savkin</a>for this picture</span>
+                        href="http://victorsavkin.com/post/110170125256/change-detection-in-angular-2">Victor Savkin</a> for this picture</span>
             </section>
         </section>
 
@@ -326,7 +354,7 @@ class NameService {
 }				</pre>
             </section>
             <section>
-					<pre class="highlight js medium">
+                <pre class="highlight js" style="font-size: 0.9em !important;">
 class App {
     constructor(@Inject(NameService) NameService) {
         this.name = NameService.getName();
@@ -337,6 +365,12 @@ class App {
             <section>
                 <img class="stretch" src="img/deathstar-explosion.gif">
             </section>
+        </section>
+
+        <section>
+            <img src="img/angular2.png" class="plain logo block">
+            <h2 class="block" style="margin: 0 70px">vs</h2>
+            <img src="img/aurelia.png" class="plain logo block">
         </section>
 
         <section>
@@ -377,21 +411,17 @@ class App {
                 </table>
             </section>
             <section>
-					<pre class="highlight js medium">
+					<pre class="highlight js">
 &lt;dom-module id=&quot;hello-world&quot;&gt;
     &lt;template&gt;
         &lt;p&gt;Hello {{name}}&lt;/p&gt;
     &lt;/template&gt;
 &lt;/dom-module&gt;
-
 &lt;script&gt;
 Polymer({
     is: &#39;hello-world&#39;,
     properties: {
-        who: {
-            type: String,
-            value: &#39;World&#39;
-        }
+        who: &#39;World&#39
     }
 });
 &lt;/script&gt;
@@ -512,7 +542,7 @@ Polymer({
                 </table>
             </section>
             <section>
-					<pre class="highlight js medium">
+					<pre class="highlight js">
 import React from 'react';
 
 class HelloWorld extends React.Component {
@@ -598,12 +628,29 @@ export default HelloWorld;
                     </tbody>
                 </table>
             </section>
+            <section data-background="img/sw-space-battle-bg.jpg">
+            </section>
+            <section data-background="img/sw-space-battle-bg-blur.jpg">
+                <span class="block" style="width: 45%">
+                    <img src="img/angular2.png" class="plain logo small block" style="padding-bottom: 50px">
+                    <h3 class="fragment bordered" data-fragment-index="0">Ng2 syntax</h3><br>
+                    <h3 class="fragment bordered" data-fragment-index="2">TS, Dart</h3><br>
+                    <h3 class="fragment bordered" data-fragment-index="4">Single maintainer</h3><br>
+                </span>
+                <h2 class="block bordered">vs</h2>
+                <span class="block" style="width: 45%">
+                    <img src="img/react.png" class="plain logo small block" style="padding-bottom: 50px">
+                    <h3 class="fragment bordered" data-fragment-index="1">jsx</h3><br>
+                    <h3 class="fragment bordered" data-fragment-index="3">JS</h3><br>
+                    <h3 class="fragment bordered" data-fragment-index="5">Community</h3><br>
+                </span>
+            </section>
         </section>
 
         <section>
             <h2>Demo</h2>
             <a href="https://bunopus-angular-vanilla.herokuapp.com/" data-preview-link>Vanilla Angular Directive</a><br>
-            <a href="https://bunopus-angular-react.herokuapp.com/" data-preview-link>Angular Directive with React</a><br>
+            <!--<a href="https://bunopus-angular-react.herokuapp.com/" data-preview-link>Angular Directive with React</a><br>-->
             <a href="https://bunopus-angular2.herokuapp.com/" data-preview-link>Angular 2</a><br>
 
             <span class="slidenote" style="padding-top: 100px">many thanks to <a href="https://github.com/djsmith42">Dave Smith</a></span>
