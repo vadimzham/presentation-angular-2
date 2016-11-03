@@ -47,7 +47,7 @@
 
     <div class="slides">
 
-        <section data-background="img/wrike-bg.jpg">
+        <section>
             <h1 style="padding-top: 100px">Angular 2</h1>
             <br><br>
             <h2 style="letter-spacing: 2px">Знакомый герой, новые надежды</h2>
@@ -224,19 +224,6 @@ export class AppComponent {
 &lt;/todo-cmp&gt;
 			  </pre>
             </section>
-            <section>
-                    <pre class="highlight js">
-@Component({selector: 'todo-cmp'})
-class TodoCmp {
-    @Input() model;
-    @Output() complete = new EventEmitter();
-
-    onCompletedButton() {
-        // this fires an event
-        this.complete.next();
-    }
-}			        </pre>
-            </section>
         </section>
 
         <section>
@@ -326,6 +313,7 @@ zone.fork().run(function () {
             </section>
             <section>
 			    <pre class="highlight js">
+@Injectable()
 class NameService {
     constructor() {
         this.name = 'UserName';
@@ -338,9 +326,10 @@ class NameService {
             </section>
             <section>
                 <pre class="highlight js" style="font-size: 0.9em !important;">
+import { NameService } from ./name.service;
 class App {
-    constructor(@Inject(NameService) NameService) {
-        this.name = NameService.getName();
+    constructor(nameService: NameService) {
+        this.name = nameService.getName();
     }
 }
 			  </pre>
